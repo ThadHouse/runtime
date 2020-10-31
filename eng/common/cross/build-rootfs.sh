@@ -340,6 +340,12 @@ elif [[ -n $__CodeName ]]; then
         patch -p1 < $__CrossDir/$__BuildArch/trusty-lttng-2.4.patch
         popd
     fi
+
+    if [[ "$__BuildArch" == "armel" && "$__CodeName" == "jessie" ]]; then
+        pushd $__RootfsDir
+        patch -p1 < $__CrossDir/$__BuildArch/armel.jessie.patch
+        popd
+    fi
 elif [[ "$__Tizen" == "tizen" ]]; then
     ROOTFS_DIR=$__RootfsDir $__CrossDir/$__BuildArch/tizen-build-rootfs.sh
 else
